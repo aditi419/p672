@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>3D Bowling Stage 1</title>
+        
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>   
+        <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+        <script src='throw.js'></script>
+    </head>
+
+    <body>
+        <a-scene id='scene'>
+            <!--Asset-->
+            <a-asset>
+                <a-asset-item id='ball' src='Models/bowling_ball/scene.gltf'></a-asset-item>
+                <a-asset-item id='pins' src='Models/bowling_pins/scene.gltf'></a-asset-item>
+            </a-asset>
+
+            <!--Light-->
+            <a-entity light="type: ambient; color: white; intensity:0.5"></a-entity>
+
+            <!--Camera and Cursor-->
+            <a-entity
+                id="camera"
+                camera
+                position="0 1.6 0"
+                wasd-controls
+                look-controls="pointerLockEnabled: false"        
+            >
+                <a-entity
+                    id='bowlingBall'
+                    gltf-model='#ball'
+                    position='0 1.6 3'
+                    rotation='0 180 0'
+                    scale='2 2'
+                ></a-entity>
+            </a-entity>
+
+            <!--Ball-->
+            <a-entity ball></a-entity>
+
+            <!--Ground-->
+            <a-plane
+                id="ground"
+                position="0 1 0"
+                rotation="-90 0 0"
+                height="45"
+                width="5"
+                color="pink"
+                static-body
+                visible="true"
+            ></a-plane>
+
+            <!--Wall-->
+            <a-box
+                id='wall'
+                position='0 1 -12'
+                color='grey'
+                depth='1'
+                height='5'
+                width='5'
+                static-body
+            ></box>
+
+            <!--Pins-->
+            <a-entity 
+                id='bowlingPins' 
+                gltf-model='#pins'
+                position='0 0 2'
+                scale='2 2'
+            ></a-entity>
+        </a-scene>
+    </body>
+</html>
